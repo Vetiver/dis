@@ -29,8 +29,8 @@ const channelId = process.env.CHANNELID;
 client.on('presenceUpdate', (oldPresence, newPresence) => {
     const member = newPresence.member;
     const status = newPresence.activities[0];
-
-    if (status && status.type === 0 && status.name === 'Dota 2' && member.user.id === process.env.MEMBERUSERID) {
+    const Dota2Player = newPresence.activities.some(activity => activity.name === 'Dota 2');
+    if (Dota2Player && member.user.id === process.env.MEMBERUSERID) {
         const channel = client.channels.cache.get(channelId);
         if (channel) {
             const currentDate = new Date();
@@ -39,13 +39,15 @@ client.on('presenceUpdate', (oldPresence, newPresence) => {
             
             channel.send(`>>> 👑👑👑\n**Его величество ${member.user.globalName} зашел в ${status.name}!**\n📅 **Дата:** ${dateString}\n🕒 **Время:** ${timeString}\n🎉🎉🎉`);
         }
-    }
-    if (status && status.type === 0 && status.name == 'Dota 2' && member.user.id == process.env.CHELIADID) {
+    } 
+    
+    if (Dota2Player && member.user.id === process.env.CHELIADID) {
         const channel = client.channels.cache.get(channelId);
         if (channel) {
             const currentDate = new Date();
             const dateString = currentDate.toLocaleDateString('ru-RU'); 
             const timeString = currentDate.toLocaleTimeString('ru-RU'); 
+
             channel.send(`>>> 📅 **Дата:** ${dateString}\n🕒 **Время:** ${timeString}\n${member.user.globalName} с рангом СТРАЖ зашел в ${status.name}!`);
         }
     }
