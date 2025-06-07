@@ -48,7 +48,7 @@ client.on('presenceUpdate', (oldPresence, newPresence) => {
             const dateString = currentDate.toLocaleDateString('ru-RU'); 
             const timeString = currentDate.toLocaleTimeString('ru-RU'); 
 
-            channel.send(`>>> 📅 **Дата:** ${dateString}\n🕒 **Время:** ${timeString}\n${member.user.globalName} с рангом СТРАЖ зашел в ${status.name}!`);
+            channel.send(`>>> 📅 **Дата:** ${dateString}\n🕒 **Время:** ${timeString}\n${member.user.globalName} с рангом СТРАЖ зашел в Dota 2!`);
         }
     }
 });
